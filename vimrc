@@ -70,8 +70,7 @@ endfunction
 colorscheme gruvbox
 
 set termguicolors
-set guicursor=n-v-c:block-Cursor/lCursor
-
+set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
 
 set breakindent
 set showbreak=↳\
@@ -79,9 +78,11 @@ set showbreak=↳\
 
 highlight MatchParen ctermbg=NONE term=bold guibg=NONE gui=bold
 
-highlight Cursor cterm=underline guibg=NONE
-
-highlight CursorLine guibg=Gray ctermbg=Gray
+if &term =~ "xterm"
+  let &t_SI = "\e[5 q" " Insert mode (blinking bar)
+  let &t_SR = "\e[3 q" " Replace mode (blinking underline)
+  let &t_EI = "\e[1 q" " Normal mode (block)
+endif
 
 " Save
 nnoremap <leader>w :w<CR>
